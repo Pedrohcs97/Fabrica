@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Virtoo</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap/css/bootstrap.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/lib/font-awesome/css/font-awesome.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/lib/custom.css}" />
+
+    </head>
+    <body class="Pedro">
+        <!-- MENU -->
+        <div th:remove="tag" layout:include="/_layout/menu"></div>
+
+        <!-- CONTEÚDO -->
+        <div class="container">
+            <div th:remove="tag" layout:fragment="conteudo"></div>
+        </div>
+
+        <!-- JS -->
+        <script th:src="@{/lib/jquery/jquery.js}"></script>
+        <script th:src="@{/lib/bootstrap/js/bootstrap.js}"></script>
+    </body>
+</html>

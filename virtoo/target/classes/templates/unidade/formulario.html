@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="/_layout/template">
+
+    <div th:remove="tag" layout:fragment="conteudo">
+        <h1>Formulário de Unidade</h1>
+
+        <form th:action="@{/unidade}" th:object ="${unidade}" method="post" class="form-horizontal">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label required">Nome</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('nome')} ? has-error">
+                                <input type="text" class="form-control" th:field="*{nome}" maxlength="60"/>
+
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('nome')}"
+                                     th:errors="*{nome}"
+                                     > </div>
+                            </div>
+                        </div>
+
+                        <label class="col-md-2 control-label required">Número Fiscal</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('numeroFiscal')} ? has-error">
+                                <input type="text" class="form-control" th:field="*{numeroFiscal}" maxlength="10"/>
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('numeroFiscal')}"
+                                     th:errors="*{numeroFiscal}"
+                                     > </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label required">Logradouro</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('endereco.logradouro')} ? has-error">
+                                <input type="text" class="form-control" th:field="*{endereco.logradouro}" maxlength="60"/>
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('endereco.logradouro')}"
+                                     th:errors="*{endereco.logradouro}"
+                                     > </div>
+                            </div>
+                        </div>
+
+
+
+                        <label class="col-md-2 control-label required">Bairro</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('endereco.bairro')} ? has-error">
+                                <input type="text" class="form-control" th:field="*{endereco.bairro}" maxlength="50"/>
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('endereco.bairro')}"
+                                     th:errors="*{endereco.bairro}"
+                                     > </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label required">País</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('endereco.pais')} ? has-error">
+                                <select th:field="*{endereco.pais}" class="form-control">
+                                    <option value=""></option>
+                                    <option th:each="pais:${listarPais}" th:value="${pais.id}"
+                                            th:text="${pais.nome}"></option>
+                                </select>
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('endereco.pais')}"
+                                     th:errors="*{endereco.pais}"
+                                     > </div>
+                            </div>
+                        </div>
+
+                        <label class="col-md-2 control-label required">Província</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('endereco.provincia')} ? has-error">
+                                <input type="text" class="form-control" th:field="*{endereco.provincia}" maxlength="60"/>
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('endereco.provincia')}"
+                                     th:errors="*{endereco.provincia}"
+                                     > </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label required">Município</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('endereco.municipio')} ? has-error">
+                                <input type="text" class="form-control" th:field="*{endereco.municipio}" maxlength="60"/>
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('endereco.municipio')}"
+                                     th:errors="*{endereco.municipio}"
+                                     > </div>
+
+                            </div>
+                        </div>
+
+                        <label class="col-md-2 control-label required">Caixa Postal</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('endereco.caixaPostal')} ? has-error">
+                                <input type="text" class="form-control" th:field="*{endereco.caixaPostal}" maxlength="10"/>
+
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('endereco.caixaPostal')}"
+                                     th:errors="*{endereco.caixaPostal}"
+                                     > </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label required">Instituição</label>
+                        <div class="col-md-4">
+                            <select th:field="*{instituicao}" class="form-control">
+                                <option value=""></option>
+                                <option th:each="instituicao:${listarInstituicao}" th:value="${instituicao.id}"
+                                        th:text="${instituicao.nome}"></option>
+                            </select>
+                            <label class="error text-danger"  th:if="${#fields.hasErrors('instituicao')}" th:errors="*{instituicao}"></label>
+                        </div>
+
+                        <label class="col-md-2 control-label required">Número</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('endereco.numero')} ? has-error">
+                                <input type="text" class="form-control" th:field="*{endereco.numero}" maxlength="10"/>
+
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('endereco.numero')}"
+                                     th:errors="*{endereco.numero}"
+                                     > </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-footer clearfix">
+                <div class="pull-left">
+                    Campos Obrigatórios <span class="required"></span>
+                </div>
+
+                <div class="pull-right">
+                    <input type="hidden" th:field="*{id}" />
+                    <button class="btn btn-success">
+                        <i class="fa fa-send fa-fw"></i> Salvar
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</html>

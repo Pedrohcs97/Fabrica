@@ -1,0 +1,18 @@
+
+
+label.required:after, span.required:after{
+    margin-top: 0px;
+    margin-left: 3px;
+    content: "*";
+    font-size: 20px;
+    position: relative;
+    color: red;
+}
+
+.Pedro{
+    background-color: #fafafa;
+}
+
+table{
+    background-color: white !important;
+}

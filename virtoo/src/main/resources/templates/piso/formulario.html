@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="/_layout/template">
+
+    <div th:remove="tag" layout:fragment="conteudo">
+        <h1>Formulário de Piso</h1>
+
+        <form th:action="@{/piso}" th:object ="${piso}" method="post" class="form-horizontal">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label required">Nome</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('nome')} ? has-error">
+                                <input type="text" class="form-control" th:field="*{nome}" maxlength="45"/>
+
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('nome')}"
+                                     th:errors="*{nome}"
+                                     > </div>
+                            </div>
+                        </div>
+
+                        <label class="col-md-2 control-label required">Blocos</label>
+
+                        <div class="col-md-4">
+                            <select th:field="*{bloco}" class="form-control">
+                                <option value=""></option>
+                                <option th:each="bloco:${listarBloco}" th:value="${bloco.id}"
+                                        th:text="${bloco.nome}"></option>
+                            </select>
+                            <label class="error text-danger"  th:if="${#fields.hasErrors('bloco')}" th:errors="*{bloco}"></label>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer clearfix">
+                        <div class="pull-left">
+                            Campos Obrigatórios <span class="required"></span>
+                        </div>
+
+                        <div class="pull-right">
+                            <input type="hidden" th:field="*{id}" />
+                            <button class="btn btn-success">
+                                <i class="fa fa-send fa-fw"></i> Salvar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</html>

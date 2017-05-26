@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="/_layout/template">
+
+    <div th:remove="tag" layout:fragment="conteudo">
+        <h1>Formulário de Curso</h1>
+
+        <form th:action="@{/curso}" th:object ="${curso}" method="post" class="form-horizontal">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label required">Nome</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('nome')} ? has-error">
+                                <input type="text" class="form-control" th:field="*{nome}" maxlength="80"/>
+
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('nome')}"
+                                     th:errors="*{nome}"
+                                     > </div>
+                            </div>
+                        </div>
+
+                        <label class="col-md-2 control-label required">Tipo</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('tipo')} ? has-error">
+                                <select th:field="*{tipo}" id="idTipo" class="form-control">
+                                    <option value=""></option>
+                                    <option value="Exatas">Exatas</option>
+                                    <option value="Exatas">Humanas</option>
+                                    <option value="Biológicas">Biológicas</option>
+
+                                </select>
+
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('tipo')}"
+                                     th:errors="*{tipo}"
+                                     > </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label required">Unidade</label>
+                        <div class="col-md-4">
+                            <select th:field="*{unidade}" class="form-control">
+                                <option value=""></option>
+                                <option th:each="unidade:${listarUnidade}" th:value="${unidade.id}"
+                                        th:text="${unidade.nome}"></option>
+                            </select>
+                            <label class="error text-danger"  th:if="${#fields.hasErrors('unidade')}" th:errors="*{unidade}"></label>
+                        </div>
+
+                        <label class="col-md-2 control-label required">Carga Horária</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('cargaHoraria')} ? has-error">
+                                <input type="number" class="form-control" th:field="*{cargaHoraria}" maxlength="4"/>
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('cargaHoraria')}"
+                                     th:errors="*{cargaHoraria}"
+                                     > </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label required">Turno</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('turno')} ? has-error">
+                                <select th:field="*{turno}" id="idTurno" class="form-control">
+                                    <option value=""></option>
+                                    <option value="Matutino/Vespertino">Matutino/Vespertino</option>
+                                    <option value="Matutino/Nortuno">Matutino/Nortuno</option>
+                                    <option value="Matutino">Matutino</option>
+                                    <option value="Vespertino">Vespertino</option>
+                                    <option value="Norturno">Norturno</option>
+                                    <option value="Vespertino/Nortuno">Vespertino/Nortuno</option>
+                                    <option value="Vespertino/Nortuno">Vespertino/Nortuno</option>
+
+                                </select>
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('turno')}"
+                                     th:errors="*{turno}"
+                                     > </div>
+                            </div>
+                        </div>
+
+                        <label class="col-md-2 control-label required">Descrição</label>
+                        <div class="col-md-4">
+                            <div th:classappend="${#fields.hasErrors('descricao')} ? has-error">
+                                <input type="text" class="form-control" th:field="*{descricao}" maxlength="200"/>
+                                <div class="text-danger"
+                                     th:if="${#fields.hasErrors('descricao')}"
+                                     th:errors="*{descricao}"
+                                     > </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--  <div class="form-group">
+                          <label class="col-md-2 control-label required">Modalidade</label>
+                          <div class="col-md-4">
+                              <div th:classappend="${#fields.hasErrors('modalidade')} ? has-error">
+                                  <select th:field="*{modalidade}" id="idTurno" class="form-control">
+                                      <option value=""></option>
+                                      <option value="1">EAD</option>
+                                      <option value="2">Presencial</option>
+
+                                  </select>
+                                  <div class="text-danger"
+                                       th:if="${#fields.hasErrors('modalidade')}"
+                                       th:errors="*{modalidade}"
+                                       > </div>
+                              </div>
+                          </div>
+
+
+                </div> -->
+                </div>
+            </div>
+
+            <div class="panel-footer clearfix">
+                <div class="pull-left">
+                    Campos Obrigatórios <span class="required"></span>
+                </div>
+
+                <div class="pull-right">
+                    <input type="hidden" th:field="*{id}" />
+                    <button class="btn btn-success">
+                        <i class="fa fa-send fa-fw"></i> Salvar
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
+</html>

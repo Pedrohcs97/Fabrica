@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="/_layout/template">
+
+    <div th:remove="tag" layout:fragment="conteudo">
+        <h1>Lista de Mantenedora</h1>
+
+        <div class="alert alert-success"
+             th:if="${!#lists.isEmpty(mensagem)}"
+             th:text="${mensagem}">
+
+        </div>
+
+        <div class="form-group">
+            <a class="btn btn-primary" th:href="@{/mantenedora/novo}">
+                <i class="fa fa-plus fa-fw"></i> Nova
+            </a>
+
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>País</th>
+                    <th>Lista de Instituições</th>
+                    <th>Ações</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="mantenedora:${mantenedoras}">
+                    <td th:text="${mantenedora.codigo}"> </td>
+                    <td th:text="${mantenedora.nome}"></td>
+                    <td th:text="${mantenedora.endereco.pais.nome}"></td>
+                    <td><div th:each="instituicao:${mantenedora.instituicoes}" th:text="${instituicao.nome}">
+
+                        </div></td>
+                    <td>
+                        <a th:href="@{/mantenedora/alterar/{id}(id=${mantenedora.id})}"
+                           class="btn btn-primary">
+                            <i class="fa fa-pencil fa-fw"></i> Alterar
+                        </a>
+                        <a th:href="@{/mantenedora/excluir/{id}(id=${mantenedora.id})}"
+                           class=   "btn btn-danger">
+                            <i class="fa fa-trash fa-fw"></i> Excluir
+                        </a>
+                    </td>
+
+
+                </tr>
+                <tr th:if="${#lists.isEmpty(mantenedoras)}">
+                    <td colspan="5"> Nenhuma mantenedora cadastrada!</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</html>

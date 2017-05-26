@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="/_layout/template">
+
+    <div th:remove="tag" layout:fragment="conteudo">
+        <h1>Lista de Unidades</h1>
+
+        <div class="alert alert-success"
+             th:if="${!#lists.isEmpty(mensagem)}"
+             th:text="${mensagem}">
+
+        </div>
+
+        <div class="form-group">
+            <a class="btn btn-primary" th:href="@{/unidade/novo}">
+                <i class="fa fa-plus fa-fw"></i> Nova Unidade
+            </a>
+            <a class="btn btn-primary" th:href="@{/bloco}">
+                <i class="glyphicon glyphicon-circle-arrow-right"></i> Bloco
+            </a>
+
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Instituição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="unidade:${unidades}">
+                    <td th:text="${unidade.nome}"></td>
+                    <td th:text="${unidade.instituicao.nome}"></td>
+
+                    <td>
+                        <a th:href="@{/unidade/alterar/{id}(id=${unidade.id})}"
+                           class="btn btn-primary">
+                            <i class="fa fa-pencil fa-fw"></i> Alterar
+                        </a>
+                        <a th:href="@{/unidade/excluir/{id}(id=${unidade.id})}"
+                           class=   "btn btn-danger">
+                            <i class="fa fa-trash fa-fw"></i> Excluir
+                        </a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(unidades)}">
+                    <td colspan="4"> Nenhuma unidade cadastrada!</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</html>

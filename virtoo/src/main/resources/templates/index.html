@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout/template">
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Virtoo</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/lib/custom.css}" />
+
+    </head>
+
+    <body class="Pedro">
+        <div th:remove="tag" layout:fragment="conteudo" >
+            <h1>Virtoo</h1>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2>É um sistema em desenvolvimento pelos estudantes do curso de engenharia de computação juntamente com a fábrica de turing
+                        para atender as necessidades de Gestão Acadêmica e Financeira da Instituição!</h2>
+                    <h4>O virtoo esta sendo desenvolvido para alunos e funcionários dos institutos ISPVIDA e ISTEL da Angola que necessitam de
+                        um sistema capaz de gerenciar todas as ações realizadas nos institutos. É um software com plataforma web para gestão acadêmica e financeira.
+                        Possibilita que alunos e funcionários das instituições possam realizar suas atividades acadêmicas. O diferencial do nosso produto é a facilidade
+                        no aprendizado e memorização das funcionalidades do sistema, além de realizar toda e qualquer ação com total segurança para tranquilidade do usuário.
+                        Nosso produto irá agilizar e simplificar o processo de gestão acadêmica e financeira
+                        apresentando uma qualidade satisfatória na apresentação das informações referente ao campus das instituições!
+
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
